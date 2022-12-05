@@ -1,9 +1,8 @@
-from cv2 import Feature2D
 import numpy as np
 from sklearn.cluster import KMeans
 from sklearn.metrics import accuracy_score
 from sklearn.svm import LinearSVC
-from build_histogram import *
+from Build_Histogram import *
 
 def Processing_Pipeline(training_features, testing_features, training_labels, testing_labels):
     

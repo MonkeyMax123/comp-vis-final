@@ -1,9 +1,11 @@
 from sklearn.model_selection import train_test_split
-from build_histogram import *
+from Build_Histogram import *
 from Detect_Feature_And_KeyPoints import *
 from Load_Dataset_folder import *
 from Features_Processing import *
-from Processsing_Pipeline import *
+from Linear_Processsing_Pipeline import *
+from Training_Poly_Processing_Pipeline import *
+from Testing_Poly_Processing_Pipeline import *
 
 
 root_path = "C:\\Users\\Max\\dev\\comp vis final\\"
@@ -18,8 +20,13 @@ features_train, features_test, labels_train, labels_test = train_test_split(feat
 features_train_train, features_validation, labels_train_train, labels_validation = train_test_split(features_train, labels_train, test_size = .25, random_state = 0)
 
 
-validation_accuracy = Processing_Pipeline(features_train_train, features_validation, labels_train_train, labels_validation)
-testing_accuracy = Processing_Pipeline(features_train, features_test, labels_train, labels_test)
+c, d = Poly_Processing_Pipeline(features_train_train, features_validation, labels_train_train, labels_validation)
 
-print("Validation Accuracy: ", validation_accuracy)
+
+training_accuracy = Testing_Poly_SVC(features_train_train, features_validation, labels_train_train, labels_validation, c, d)
+testing_accuracy = Testing_Poly_SVC(features_train, features_test, labels_train, labels_test,c, d)
+
+print("c: ", c)
+print("d: ", d)
+print("Training Accuracy: ", training_accuracy)
 print("Testing Accuracy: ", testing_accuracy)
